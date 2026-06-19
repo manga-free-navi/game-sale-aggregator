@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ea365d314ecf4224a5f58d2d7430e7aa",
+    "title": "Citizen Sleeper",
+    "description": "惑星間資本主義の荒野で生き延びろ。あなたは企業の束縛を逃れ、宇宙の辺境の荒廃したステーションに流れ着いた労働者だ。テーブルトークRPGを彷彿とさせる自由度の高い世界で、ステーションを探索し、友人を選び、過去を断ち切って未来を掴もう。",
+    "imageUrl": "https://cdn1.epicgames.com/spt-assets/919d5976f3804d4cabb8ca90ea43a956/citizen-sleeper-eh4rb.jpg",
+    "storeUrl": "https://store.epicgames.com/ja/p/citizen-sleeper-944858",
+    "platform": "PC",
+    "originalPrice": "￥1,980",
+    "salePrice": "無料",
+    "startDate": "2026-06-18T15:00:00.000Z",
+    "endDate": "2026-06-25T15:00:00.000Z",
+    "publishedAt": "2026-06-18T15:00:00.000Z",
+    "storeName": "Epic Games Store",
+    "isManual": false
+  },
+  {
+    "id": "aee7ec395d054078a48d867849e2a550",
+    "title": "ROBOBEAT",
+    "description": "リズムにノッて撃ち続けろ！ リズムシューティングゲーム「ROBOBEAT」の主人公はエースという名の賞金稼ぎだ。絶え間なく変化するステージを突き進み、狂気のロボット、フラッザーを捕まえなければならない。壁を走り、滑り回り、リズムに乗って撃ちまくり、ロボ軍団をぶちのめし、ターゲットを追いかけろ。",
+    "imageUrl": "https://cdn1.epicgames.com/spt-assets/91105717b53044ed8e384e5fada71db8/robobeat-1ojda.png",
+    "storeUrl": "https://store.epicgames.com/ja/p/robobeat-5f084b",
+    "platform": "PC",
+    "originalPrice": "￥2,300",
+    "salePrice": "無料",
+    "startDate": "2026-06-18T15:00:00.000Z",
+    "endDate": "2026-06-25T15:00:00.000Z",
+    "publishedAt": "2026-06-18T15:00:00.000Z",
+    "storeName": "Epic Games Store",
+    "isManual": false
+  }
+]
