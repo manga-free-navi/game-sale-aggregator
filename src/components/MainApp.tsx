@@ -101,7 +101,7 @@ export default function MainApp() {
 
   // 1. 自動データと手動データをマージ（ID衝突時は手動側を優先）
   const allGames = useMemo(() => {
-    const manualIds = new Set(manualGamesData.map(g => g.id));
+    const manualIds = new Set((manualGamesData as Game[]).map(g => g.id));
     const filteredAutoGames = (gamesData as Game[]).filter(g => !manualIds.has(g.id));
     return [...(manualGamesData as Game[]), ...filteredAutoGames];
   }, []);

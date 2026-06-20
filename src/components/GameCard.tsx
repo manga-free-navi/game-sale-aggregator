@@ -137,9 +137,36 @@ export default function GameCard({ game, isWishlisted, onToggleWishlist }: GameC
         </div>
         
         {/* バッジ表示 */}
-        <div className="card-badges">
+        <div className="card-badges" style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
           {game.isManual && <span className="badge-item badge-manual">注目セール</span>}
           <span className="badge-item badge-channel">{game.storeName}</span>
+          {game.salePrice === '無料' || game.isFree ? (
+            <span className="badge-item badge-manual" style={{ 
+              background: 'linear-gradient(135deg, #ff007f 0%, #ff00ff 100%)', 
+              color: '#fff',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              padding: '0.2rem 0.5rem',
+              borderRadius: '4px',
+              boxShadow: '0 0 8px rgba(255, 0, 127, 0.6)',
+              border: 'none'
+            }}>
+              🎁 無料
+            </span>
+          ) : game.discountRate ? (
+            <span className="badge-item" style={{ 
+              background: '#39ff14', 
+              color: '#0b0f19',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              padding: '0.2rem 0.5rem',
+              borderRadius: '4px',
+              boxShadow: '0 0 8px rgba(57, 255, 20, 0.5)',
+              border: 'none'
+            }}>
+              🔥 {game.discountRate}% OFF
+            </span>
+          ) : null}
         </div>
         
         {/* ハードウェアタグ */}
@@ -268,42 +295,6 @@ export default function GameCard({ game, isWishlisted, onToggleWishlist }: GameC
               グッズ検索
             </a>
           </div>
-        </div>
-
-        {/* 割引率（または無料）の表示 */}
-        <div className="discount-info-row" style={{ 
-          marginTop: '0.8rem', 
-          textAlign: 'center',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          {game.salePrice === '無料' || game.isFree ? (
-            <span className="badge-item badge-manual" style={{ 
-              background: 'linear-gradient(135deg, #ff007f 0%, #ff00ff 100%)', 
-              color: '#fff',
-              fontSize: '0.85rem',
-              fontWeight: 800,
-              padding: '0.3rem 0.8rem',
-              borderRadius: '20px',
-              boxShadow: '0 0 10px rgba(255, 0, 127, 0.5)'
-            }}>
-              🎁 無料配布中！
-            </span>
-          ) : game.discountRate ? (
-            <span className="badge-item" style={{ 
-              background: '#39ff14', 
-              color: '#0b0f19',
-              fontSize: '0.85rem',
-              fontWeight: 800,
-              padding: '0.3rem 0.8rem',
-              borderRadius: '20px',
-              boxShadow: '0 0 10px rgba(57, 255, 20, 0.4)'
-            }}>
-              🔥 {game.discountRate}% OFF
-            </span>
-          ) : null}
         </div>
       </div>
     </article>
