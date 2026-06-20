@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const { parsePrtimes } = require('./parsers/prtimes');
 require('dotenv').config();
 
 const dataDir = path.join(__dirname, '..', 'data');
@@ -174,9 +175,10 @@ async function fetchSteamSales() {
 async function main() {
   const epicGames = await fetchEpicFreeGames();
   const steamGames = await fetchSteamSales();
+  const prtimesGames = await parsePrtimes();
   
-  // 双方のデータを結合
-  let allGames = [...epicGames, ...steamGames];
+  // すべてのデータを結合
+  let allGames = [...epicGames, ...steamGames, ...prtimesGames];
   
   // 日付順（新着順）にソート
   allGames.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
