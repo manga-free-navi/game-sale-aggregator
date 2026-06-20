@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
 2:I[47257,["/game-sale-aggregator/_next/static/chunks/158myu8e_yme3.js"],"ClientPageRoot"]
-3:I[52683,["/game-sale-aggregator/_next/static/chunks/158myu8e_yme3.js","/game-sale-aggregator/_next/static/chunks/1p637e0d47dpj.js"],"default"]
+3:I[52683,["/game-sale-aggregator/_next/static/chunks/158myu8e_yme3.js","/game-sale-aggregator/_next/static/chunks/2yqpfqbs09fbp.js"],"default"]
 6:I[97367,["/game-sale-aggregator/_next/static/chunks/158myu8e_yme3.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/game-sale-aggregator/_next/static/chunks/1p637e0d47dpj.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-IWgk7py1m9LwT6Pso2Zq"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/game-sale-aggregator/_next/static/chunks/2yqpfqbs09fbp.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pCd5hbH5CQQ7BN6Wq-9e1"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
