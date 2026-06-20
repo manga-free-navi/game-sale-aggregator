@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "無料＆割引ゲームセールナビ | 期間限定無料配布・お得なゲームセール情報を自動集約",
-  description: "Epic Games Storeの毎週無料配布ゲームや、Steam、Nintendo eShop、PlayStation Storeのお得な値引き・セール対象のゲーム情報を自動集約！おトクにゲームを遊ぶための特化型ナビサイト。",
-  keywords: "無料ゲーム, ゲームセール, EpicGames無料配布, Steamセール, Switchセール, PSストアセール",
+  title: "無料 ゲーム・セール情報ナビ | 期間限定無料配布・お得なゲームセール情報を自動集約",
+  description: "【毎日自動更新】「無料 ゲーム」や「ゲームセール」情報をまとめてお届け！Epic Games Storeの毎週無料配布ゲームや、Steam、Nintendo eShop、PlayStation Storeのお得な値引き・セール対象のゲーム情報を自動集約。",
+  keywords: "無料 ゲーム, 無料ゲーム配布, PCゲーム 無料, Steam セール, Switch セール, ゲーム セール, ゲームナビ",
 };
 
 export default function RootLayout({
@@ -12,6 +12,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = process.env.NEXT_PUBLIC_GAME_SITE_URL || 'https://manga-free-navi.github.io/game-sale-aggregator/';
+
   return (
     <html lang="ja" suppressHydrationWarning={true}>
       <head>
@@ -31,7 +33,27 @@ export default function RootLayout({
             `}} />
           </>
         )}
+
+        {/* SEO用構造化データ (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "無料 ゲーム・セール情報ナビ",
+              "url": siteUrl,
+              "description": "Epic Gamesの毎週無料配布ゲームや各ストアのお得なゲームセール情報を自動集約。",
+              "inLanguage": "ja",
+              "publisher": {
+                "@type": "Organization",
+                "name": "ゲームナビ 運営チーム"
+              }
+            })
+          }}
+        />
       </head>
+
 
       <body suppressHydrationWarning={true}>
         <script dangerouslySetInnerHTML={{__html: `

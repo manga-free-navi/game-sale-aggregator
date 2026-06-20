@@ -157,10 +157,10 @@ export default function MainApp() {
       {/* ヒーローセクション */}
       <section className="hero-section">
         <h1 className="hero-title">
-          ゲーム無料化・割引 <span>最新まとめ</span>
+          無料 ゲーム ＆ 割引セール情報 <span>最新まとめ</span>
         </h1>
         <p className="hero-subtitle">
-          Epic Games Storeの毎週無料配布ゲームや、Steam、Nintendo eShop、PlayStation Store等のお得な値引き・セール対象のゲーム情報を自動集約。
+          Epic Games Storeの毎週「無料 ゲーム」配布や、Steam、Nintendo eShop、PlayStation Store等のお得な値引き・セール対象のゲーム情報を自動集約。
         </p>
       </section>
 
