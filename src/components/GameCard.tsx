@@ -139,7 +139,9 @@ export default function GameCard({ game, isWishlisted, onToggleWishlist }: GameC
         {/* バッジ表示 */}
         <div className="card-badges" style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
           {game.isManual && <span className="badge-item badge-manual">注目セール</span>}
-          <span className="badge-item badge-channel">{game.storeName}</span>
+          <span className="badge-item badge-channel" style={{ background: game.id.startsWith('prtimes') ? '#2563eb' : undefined }}>
+            {game.id.startsWith('prtimes') ? '告知記事 (PR TIMES)' : game.storeName}
+          </span>
           {game.salePrice === '無料' || game.isFree ? (
             <span className="badge-item badge-manual" style={{ 
               background: 'linear-gradient(135deg, #ff007f 0%, #ff00ff 100%)', 
@@ -279,7 +281,7 @@ export default function GameCard({ game, isWishlisted, onToggleWishlist }: GameC
               className="affiliate-btn btn-store"
               id={`btn-store-${game.id}`}
             >
-              ストアで確認
+              {game.id.startsWith('prtimes') ? '告知記事で詳細確認' : 'ストアで確認'}
             </a>
             <a 
               href={getRakutenUrl(game.title)} 

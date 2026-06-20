@@ -105,12 +105,15 @@ async function fetchSteamSales() {
 
     const items = response.data?.specials?.items || [];
     const games = [];
+    const seenAppIds = new Set();
     const now = new Date();
     // Steam APIの仕様上、終了期限が秒単位で取れないため、仮で7日間をセールの期間とする
     const oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
     for (const item of items) {
       if (!item.discounted) continue;
+      if (seenAppIds.has(item.id)) continue;
+      seenAppIds.add(item.id);
 
       // セント/100倍表記の価格を元の日本円に変換
       const originalVal = Math.round(item.original_price / 100);
