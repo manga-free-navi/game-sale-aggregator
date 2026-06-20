@@ -2,20 +2,20 @@
   "name": "無料＆割引ゲームセールナビ",
   "short_name": "ゲームナビ",
   "description": "期間限定無料ゲームやお得なゲームセールの最新情報を自動集約",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#0b0f19",
   "theme-color": "#39ff14",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "type": "image/svg+xml",
       "sizes": "any",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "type": "image/svg+xml",
       "sizes": "192x192 512x512",
       "purpose": "maskable"
