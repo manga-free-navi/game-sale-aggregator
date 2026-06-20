@@ -27,7 +27,7 @@ export default function MainApp() {
   const [selectedPlatform, setSelectedPlatform] = useState('all');
   const [selectedStore, setSelectedStore] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('newest');
+  const [sortBy, setSortBy] = useState('discount');
 
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [showWishlistOnly, setShowWishlistOnly] = useState(false);
@@ -133,12 +133,43 @@ export default function MainApp() {
     });
   }, [allGames, searchTerm, selectedPlatform, selectedStore, showWishlistOnly, wishlist]);
 
-  // 4. マージソート（手動登録された注目セールを最上部に強制ピン留め）
+  // 4. マージソート
   const sortedGames = useMemo(() => {
     return [...filteredGames].sort((a, b) => {
       // 注目セール (isManual) を優先して最上部に
       if (a.isManual && !b.isManual) return -1;
       if (!a.isManual && b.isManual) return 1;
+
+      // 割引率順（デフォルト）
+      if (sortBy === 'discount') {
+        const getSortPriority = (g: Game) => {
+          const isPrtimes = g.id.startsWith('prtimes');
+          const isFree = g.salePrice === '無料' || (g as any).isFree;
+          if (isFree && !isPrtimes) return 0; // 無料ゲーム
+          if (!isPrtimes) return 1;          // セールゲーム
+          return 2;                          // 告知記事（PR TIMES）
+        };
+
+        const priorityA = getSortPriority(a);
+        const priorityB = getSortPriority(b);
+        
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+        }
+
+        // 同一グループ内：無料ゲーム
+        if (priorityA === 0) {
+          return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+        }
+        
+        // 同一グループ内：セールゲームまたは告知記事
+        const discountA = (a as any).discountRate || 0;
+        const discountB = (b as any).discountRate || 0;
+        if (discountA !== discountB) {
+          return discountB - discountA; // 割引率降順
+        }
+        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+      }
 
       // どちらも同じグループ内の場合、選択されたソート順
       if (sortBy === 'newest') {

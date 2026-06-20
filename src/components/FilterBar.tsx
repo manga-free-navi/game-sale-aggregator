@@ -65,6 +65,7 @@ export default function FilterBar({
             onChange={(e) => onSortChange(e.target.value)}
             id="select-sort-order"
           >
+            <option value="discount">割引率が高い順（お得順）</option>
             <option value="newest">セール開始が新しい順</option>
             <option value="oldest">セール開始が古い順</option>
             <option value="store">ストア別</option>
