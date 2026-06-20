@@ -1,2 +1,2 @@
 :HL["/game-sale-aggregator/_next/static/chunks/0kmkbszf0m-xk.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"pCd5hbH5CQQ7BN6Wq-9e1"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"cs9VbBExWlIbWm_7xNSUa"}
