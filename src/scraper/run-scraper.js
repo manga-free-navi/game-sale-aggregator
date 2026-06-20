@@ -89,7 +89,7 @@ async function fetchEpicFreeGames() {
  * Steam Web APIから現在開催中の特売情報を取得する
  */
 async function fetchSteamSales() {
-  const url = 'https://store.steampowered.com/api/featuredcategories?l=japanese';
+  const url = 'https://store.steampowered.com/api/featuredcategories?l=japanese&cc=jp';
   console.log('Fetching Steam Store Specials...');
   
   try {
