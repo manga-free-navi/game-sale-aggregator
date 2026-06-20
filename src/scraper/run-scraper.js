@@ -73,7 +73,9 @@ async function fetchEpicFreeGames() {
         endDate: activeOffer.endDate,
         publishedAt: activeOffer.startDate,
         storeName: 'Epic Games Store',
-        isManual: false
+        isManual: false,
+        discountRate: 100,
+        isFree: true
       });
     }
 
@@ -120,10 +122,32 @@ async function fetchSteamSales() {
       // 代表的な画像URLの決定
       const imageUrl = item.header_image || item.large_capsule_image || item.small_capsule_image || '';
 
+      // API詳細から日本語説明文を取得
+      let description = `【期間限定 ${discountRate}% OFF！】通常価格 ${originalPrice} が、Steamセールにて ${salePrice} の特別価格で販売中！詳細はSteamストアページをご確認ください。`;
+      
+      // 連続リクエストを避けるためスリープ (1000ms)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      try {
+        console.log(`Fetching details for Steam App: ${item.name} (${item.id})...`);
+        const detailsRes = await axios.get(`https://store.steampowered.com/api/appdetails?appids=${item.id}&cc=jp&l=japanese`, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+          },
+          timeout: 5000
+        });
+        const appData = detailsRes.data?.[item.id.toString()]?.data;
+        if (appData && appData.short_description) {
+          description = appData.short_description;
+        }
+      } catch (err) {
+        console.warn(`Failed to fetch details for Steam App ${item.id}:`, err.message);
+      }
+
       games.push({
         id: `steam-${item.id}`,
         title: item.name,
-        description: `【期間限定 ${discountRate}% OFF！】通常価格 ${originalPrice} が、Steamセールにて ${salePrice} の特別価格で販売中！詳細はSteamストアページをご確認ください。`,
+        description,
         imageUrl,
         storeUrl: `https://store.steampowered.com/app/${item.id}/`,
         platform: 'PC',
@@ -133,7 +157,9 @@ async function fetchSteamSales() {
         endDate: oneWeekLater.toISOString(),
         publishedAt: now.toISOString(),
         storeName: 'Steam',
-        isManual: false
+        isManual: false,
+        discountRate,
+        isFree: false
       });
     }
 

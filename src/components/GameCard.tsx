@@ -15,6 +15,8 @@ interface Game {
   endDate: string;
   storeName: string;
   isManual?: boolean;
+  discountRate?: number | null;
+  isFree?: boolean;
 }
 
 interface GameCardProps {
@@ -266,6 +268,42 @@ export default function GameCard({ game, isWishlisted, onToggleWishlist }: GameC
               グッズ検索
             </a>
           </div>
+        </div>
+
+        {/* 割引率（または無料）の表示 */}
+        <div className="discount-info-row" style={{ 
+          marginTop: '0.8rem', 
+          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}>
+          {game.salePrice === '無料' || game.isFree ? (
+            <span className="badge-item badge-manual" style={{ 
+              background: 'linear-gradient(135deg, #ff007f 0%, #ff00ff 100%)', 
+              color: '#fff',
+              fontSize: '0.85rem',
+              fontWeight: 800,
+              padding: '0.3rem 0.8rem',
+              borderRadius: '20px',
+              boxShadow: '0 0 10px rgba(255, 0, 127, 0.5)'
+            }}>
+              🎁 無料配布中！
+            </span>
+          ) : game.discountRate ? (
+            <span className="badge-item" style={{ 
+              background: '#39ff14', 
+              color: '#0b0f19',
+              fontSize: '0.85rem',
+              fontWeight: 800,
+              padding: '0.3rem 0.8rem',
+              borderRadius: '20px',
+              boxShadow: '0 0 10px rgba(57, 255, 20, 0.4)'
+            }}>
+              🔥 {game.discountRate}% OFF
+            </span>
+          ) : null}
         </div>
       </div>
     </article>
