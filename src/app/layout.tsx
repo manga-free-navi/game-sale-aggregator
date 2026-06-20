@@ -72,7 +72,7 @@ export default function RootLayout({
           
           <header className="site-header">
             <div className="header-content">
-              <a href="#" className="logo-container">
+              <a href={siteUrl} className="logo-container">
                 <div className="logo-icon">G</div>
                 <span className="logo-text">ゲームナビ</span>
                 <span className="logo-badge">Sale & Free</span>
@@ -94,13 +94,13 @@ export default function RootLayout({
                 >
                   <span>📚 漫画セール</span>
                 </a>
-                <a href="#" className="header-tab active">
+                <a href={siteUrl} className="header-tab active">
                   <span>🎮 ゲームセール</span>
                 </a>
               </div>
 
               <nav className="nav-links">
-                <a href="#" className="nav-link">ホーム</a>
+                <a href={siteUrl} className="nav-link">ホーム</a>
                 <a href="#privacy" className="nav-link">プライバシー</a>
               </nav>
             </div>
@@ -114,7 +114,7 @@ export default function RootLayout({
             <div className="footer-content">
               <div className="footer-logo">無料＆割引ゲームセールナビ</div>
               <div className="footer-links">
-                <a href="#" className="footer-link">ホーム</a>
+                <a href={siteUrl} className="footer-link">ホーム</a>
                 <a href="#privacy" className="footer-link">プライバシーポリシー・免責事項</a>
               </div>
               <p className="copyright">
