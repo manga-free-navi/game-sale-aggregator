@@ -2,11 +2,11 @@
 
 interface FilterBarProps {
   platforms: string[];
-  selectedPlatform: string;
-  onSelectPlatform: (platform: string) => void;
+  selectedPlatforms: string[];
+  onTogglePlatform: (platform: string) => void;
   stores: string[];
-  selectedStore: string;
-  onSelectStore: (store: string) => void;
+  selectedStores: string[];
+  onToggleStore: (store: string) => void;
   searchTerm: string;
   onSearchChange: (term: string) => void;
   sortBy: string;
@@ -17,11 +17,11 @@ interface FilterBarProps {
 
 export default function FilterBar({
   platforms,
-  selectedPlatform,
-  onSelectPlatform,
+  selectedPlatforms,
+  onTogglePlatform,
   stores,
-  selectedStore,
-  onSelectStore,
+  selectedStores,
+  onToggleStore,
   searchTerm,
   onSearchChange,
   sortBy,
@@ -29,6 +29,9 @@ export default function FilterBar({
   showWishlistOnly,
   onToggleWishlistOnly,
 }: FilterBarProps) {
+  const isPlatformAll = selectedPlatforms.length === 0 || selectedPlatforms.includes('all');
+  const isStoreAll = selectedStores.length === 0 || selectedStores.includes('all');
+
   return (
     <div className="filter-bar" id="filter-bar-container">
       {/* 検索・ソート */}
@@ -75,20 +78,20 @@ export default function FilterBar({
 
       {/* プラットフォーム絞り込み */}
       <div className="filter-row" style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.75rem' }}>
-        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, minWidth: '80px' }}>対象ハード:</span>
+        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, minWidth: '80px' }}>対象ハード (複数可):</span>
         <div className="filter-group">
           <button
-            className={`filter-btn ${selectedPlatform === 'all' ? 'active' : ''}`}
-            onClick={() => onSelectPlatform('all')}
+            className={`filter-btn ${isPlatformAll ? 'active' : ''}`}
+            onClick={() => onTogglePlatform('all')}
             id="btn-platform-all"
           >
-            すべて表示
+            すべて
           </button>
           {platforms.map((plat) => (
             <button
               key={plat}
-              className={`filter-btn ${selectedPlatform === plat ? 'active' : ''}`}
-              onClick={() => onSelectPlatform(plat)}
+              className={`filter-btn ${selectedPlatforms.includes(plat) ? 'active' : ''}`}
+              onClick={() => onTogglePlatform(plat)}
               id={`btn-platform-${plat}`}
             >
               {plat}
@@ -99,20 +102,20 @@ export default function FilterBar({
 
       {/* ストア絞り込み */}
       <div className="filter-row" style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.75rem' }}>
-        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, minWidth: '80px' }}>ストア:</span>
+        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, minWidth: '80px' }}>ストア (複数可):</span>
         <div className="filter-group">
           <button
-            className={`filter-btn ${selectedStore === 'all' ? 'active' : ''}`}
-            onClick={() => onSelectStore('all')}
+            className={`filter-btn ${isStoreAll ? 'active' : ''}`}
+            onClick={() => onToggleStore('all')}
             id="btn-store-all"
           >
-            すべて表示
+            すべて
           </button>
           {stores.map((store) => (
             <button
               key={store}
-              className={`filter-btn ${selectedStore === store ? 'active' : ''}`}
-              onClick={() => onSelectStore(store)}
+              className={`filter-btn ${selectedStores.includes(store) ? 'active' : ''}`}
+              onClick={() => onToggleStore(store)}
               id={`btn-store-${store}`}
             >
               {store}
