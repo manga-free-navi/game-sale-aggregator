@@ -102,12 +102,21 @@ export default function MainApp() {
   // アニメ・漫画データのクロスフェッチ
   useEffect(() => {
     const fetchAnimeVideos = async () => {
-      const urls = [
-        '/youtube-free-anime-aggregator/videos.json',
-        '/anime-free/videos.json',
-        'https://masayuki-gemini.github.io/youtube-free-anime-aggregator/videos.json',
-        '/videos.json'
-      ];
+      const origin = typeof window !== 'undefined' ? window.location.origin : '';
+      const envUrl = process.env.NEXT_PUBLIC_ANIME_SITE_URL || '';
+      const urls: string[] = [];
+      
+      if (envUrl) {
+        urls.push(`${envUrl.replace(/\/$/, '')}/videos.json`);
+      }
+      if (origin) {
+        urls.push(`${origin}/youtube-free-anime-aggregator/videos.json`);
+        urls.push(`${origin}/anime-free/videos.json`);
+      }
+      urls.push('/youtube-free-anime-aggregator/videos.json');
+      urls.push('/anime-free/videos.json');
+      urls.push('/videos.json');
+
       for (const url of urls) {
         try {
           const res = await fetch(url);
@@ -118,18 +127,29 @@ export default function MainApp() {
               break;
             }
           }
-        } catch (e) {}
+        } catch (e) {
+          // ignore
+        }
       }
     };
     fetchAnimeVideos();
 
     const fetchMangaSales = async () => {
-      const urls = [
-        '/manga-sale-aggregator/sales.json',
-        '/manga-sale-aggregator/data/sales.json',
-        'https://masayuki-gemini.github.io/manga-sale-aggregator/sales.json',
-        '/sales.json'
-      ];
+      const origin = typeof window !== 'undefined' ? window.location.origin : '';
+      const envUrl = process.env.NEXT_PUBLIC_MANGA_SITE_URL || '';
+      const urls: string[] = [];
+      
+      if (envUrl) {
+        urls.push(`${envUrl.replace(/\/$/, '')}/sales.json`);
+      }
+      if (origin) {
+        urls.push(`${origin}/manga-sale-aggregator/sales.json`);
+        urls.push(`${origin}/manga-sale-aggregator/data/sales.json`);
+      }
+      urls.push('/manga-sale-aggregator/sales.json');
+      urls.push('/manga-sale-aggregator/data/sales.json');
+      urls.push('/sales.json');
+
       for (const url of urls) {
         try {
           const res = await fetch(url);
@@ -140,7 +160,9 @@ export default function MainApp() {
               break;
             }
           }
-        } catch (e) {}
+        } catch (e) {
+          // ignore
+        }
       }
     };
     fetchMangaSales();

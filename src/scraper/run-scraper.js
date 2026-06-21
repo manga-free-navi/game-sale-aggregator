@@ -292,6 +292,20 @@ async function main() {
   // JSON書き出し
   if (activeGames.length > 0) {
     fs.writeFileSync(outputPath, JSON.stringify(activeGames, null, 2), 'utf8');
+
+    // public/games.json にも保存（他サイトからのクロスフェッチ用）
+    try {
+      const publicDir = path.join(__dirname, '../../public');
+      const publicOutputPath = path.join(publicDir, 'games.json');
+      if (!fs.existsSync(publicDir)) {
+        fs.mkdirSync(publicDir, { recursive: true });
+      }
+      fs.writeFileSync(publicOutputPath, JSON.stringify(activeGames, null, 2), 'utf8');
+      console.log(`パブリックデータの書き込み完了: ${publicOutputPath}`);
+    } catch (publicError) {
+      console.warn('パブリックディレクトリへのデータ書き込みに失敗しました:', publicError.message);
+    }
+
     console.log(`Scraper execution complete. Saved ${activeGames.length} games to ${outputPath}.`);
   } else {
     console.log('警告: 有効なゲームデータが0件のため、ファイル書き込みをスキップしました。');
